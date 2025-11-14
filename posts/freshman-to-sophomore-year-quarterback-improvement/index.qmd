@@ -1,0 +1,249 @@
+---
+title: "Do college QBs actually improve from year to year?"
+author: "Danny Berg"
+date: '2025-11-17'
+categories: [football, fbs, quarterbacks]
+image: "image.png"
+format: 
+  html:
+    code-fold: true
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(ggalt)
+library(ggtext)
+library(patchwork)
+library(ggbump)
+library(scales)
+library(ggrepel)
+
+qbs14 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2014 Passing Efficiency.csv") |> 
+  mutate(Season = "2014")
+
+qbs15 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2015 Passing Efficiency.csv") |> 
+  mutate(Season = "2015")
+
+qbs16 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2016 Passing Efficiency.csv") |> 
+  mutate(Season = "2016")
+
+qbs17 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2017 Passing Efficiency.csv") |> 
+  mutate(Season = "2017")
+
+qbs18 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2018 Passing Efficiency.csv") |> 
+  mutate(Season = "2018")
+
+qbs19 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2019 Passing Efficiency.csv") |> 
+  mutate(Season = "2019")
+
+qbs20 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2020 Passing Efficiency.csv") |> 
+  mutate(Season = "2020")
+
+qbs21 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2021 Passing Efficiency.csv") |> 
+  mutate(Season = "2021")
+
+qbs22 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2022 Passing Efficiency.csv") |> 
+  mutate(Season = "2022")
+
+qbs23 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2023 Passing Efficiency.csv") |> 
+  mutate(Season = "2023")
+
+qbs24 <- read_csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2024 Passing Efficiency.csv") |> 
+  mutate(Season = "2024")
+
+qbs25 <- read.csv("C:/Users/danny/OneDrive/Desktop/SPMC 350/Blog/Project 1 CSVs/2025 Passing Efficiency(as of 11.10.25).csv") |> 
+  mutate(Season = "2025")
+
+qbs25_SO <- qbs25 |> 
+  filter(Cl == "So.")
+
+qbs24_FR <- qbs24 |> 
+  filter(Cl == "Fr.")
+
+qbs24_SO <- qbs24 |> 
+  filter(Cl == "So.")
+
+qbs23_FR <- qbs23 |> 
+  filter(Cl == "Fr.")
+
+qbs23_SO <- qbs23 |> 
+  filter(Cl == "So.")
+
+qbs22_FR <- qbs22 |> 
+  filter(Cl == "Fr.")
+
+qbs22_SO <- qbs22 |> 
+  filter(Cl == "So.")
+
+qbs21_FR <- qbs21 |> 
+  filter(Cl == "Fr.")
+
+qbs21_SO <- qbs21 |> 
+  filter(Cl == "So.")
+
+qbs20_FR <- qbs20 |> 
+  filter(Cl == "Fr.")
+
+qbs20_SO <- qbs20 |> 
+  filter(Cl == "So.")
+
+qbs19_FR <- qbs19 |> 
+  filter(Cl == "Fr.")
+
+qbs19_SO <- qbs19 |> 
+  filter(Cl == "So.")
+
+qbs18_FR <- qbs18 |> 
+  filter(Cl == "Fr.")
+
+qbs18_SO <- qbs18 |> 
+  filter(Cl == "So.")
+
+qbs17_FR <- qbs17 |> 
+  filter(Cl == "Fr.")
+
+qbs17_SO <- qbs17 |> 
+  filter(Cl == "So.")
+
+qbs16_FR <- qbs16 |> 
+  filter(Cl == "Fr.")
+
+qbs16_SO <- qbs16 |> 
+  filter(Cl == "So.")
+
+qbs15_FR <- qbs15 |> 
+  filter(Cl == "Fr.")
+
+qbs15_SO <- qbs15 |> 
+  filter(Cl == "So.")
+
+qbs14_FR <- qbs14 |> 
+  filter(Cl == "Fr.")
+
+fqbs24_25 <- bind_rows(qbs24_FR, qbs25_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs23_24 <- bind_rows(qbs23_FR, qbs24_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs22_23 <- bind_rows(qbs22_FR, qbs23_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs21_22 <- bind_rows(qbs21_FR, qbs22_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs20_21 <- bind_rows(qbs20_FR, qbs21_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs19_20 <- bind_rows(qbs19_FR, qbs20_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs18_19 <- bind_rows(qbs18_FR, qbs19_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs17_18 <- bind_rows(qbs17_FR, qbs18_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs16_17 <- bind_rows(qbs16_FR, qbs17_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs15_16 <- bind_rows(qbs15_FR, qbs16_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+fqbs14_15 <- bind_rows(qbs14_FR, qbs15_SO) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+```
+
+Hello.
+
+```{r}
+att_qbs21_22 <- bind_rows(qbs21, qbs22) |> 
+  group_by(Name) |> 
+  filter(n() == 2) |> 
+  ungroup() |> 
+  arrange(desc(Name))
+
+cw <- fqbs21_22 |> filter(Name == "Caleb Williams")
+dr <- fqbs21_22 |> filter(Name == "Daniel Richardson")
+df <- fqbs21_22 |> filter(Name == "Dequan Finn")
+sh <- fqbs21_22 |> filter(Name == "Seth Henigan")
+hw <- fqbs21_22 |> filter(Name == "Hayden Wolff")
+bo <- fqbs21_22 |> filter(Name == "Brady Olson")
+
+ggplot() +
+  geom_line(data=att_qbs21_22, aes(x=Season, y=`Pass Eff`, group=Name), color="lightgrey") +
+  geom_point(data=att_qbs21_22, aes(x=Season, y=`Pass Eff`, group=Team), color="lightgrey") +
+  geom_line(data=cw, aes(x=Season, y=`Pass Eff`, group=Name), color="#A7C7E7") +
+  geom_point(data=cw, aes(x=Season, y=`Pass Eff`, group=Name), color="#A7C7E7") +
+  geom_line(data=dr, aes(x=Season, y=`Pass Eff`, group=Name), color="#4EA8DE") +
+  geom_point(data=dr, aes(x=Season, y=`Pass Eff`, group=Name), color="#4EA8DE") +
+  geom_line(data=df, aes(x=Season, y=`Pass Eff`, group=Name), color="#1F78B4") +
+  geom_point(data=df, aes(x=Season, y=`Pass Eff`, group=Name), color="#1F78B4") +
+  geom_line(data=sh, aes(x=Season, y=`Pass Eff`, group=Name), color="#1565C0") +
+  geom_point(data=sh, aes(x=Season, y=`Pass Eff`, group=Name), color="#1565C0") +
+  geom_line(data=hw, aes(x=Season, y=`Pass Eff`, group=Name), color="#0D47A1") +
+  geom_point(data=hw, aes(x=Season, y=`Pass Eff`, group=Name), color="#0D47A1") +
+  geom_line(data=bo, aes(x=Season, y=`Pass Eff`, group=Name), color="#082567") +
+  geom_point(data=bo, aes(x=Season, y=`Pass Eff`, group=Name), color="#082567") +
+  geom_text(data=cw |> filter(Season == min(Season)), aes(x=0.8, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=cw |> filter(Season == max(Season)), aes(x=2.2, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=dr |> filter(Season == min(Season)), aes(x=0.77, y=`Pass Eff` + 4, group=Name, label=Name)) +
+  geom_text(data=dr |> filter(Season == max(Season)), aes(x=2.23, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=df |> filter(Season == min(Season)), aes(x=0.82, y=`Pass Eff` + 1, group=Name, label=Name)) +
+  geom_text(data=df |> filter(Season == max(Season)), aes(x=2.2, y=`Pass Eff` + 2, group=Name, label=Name)) +
+  geom_text(data=sh |> filter(Season == min(Season)), aes(x=0.8, y=`Pass Eff` - 3, group=Name, label=Name)) +
+  geom_text(data=sh |> filter(Season == max(Season)), aes(x=2.2, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=hw |> filter(Season == min(Season)), aes(x=0.8, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=hw |> filter(Season == max(Season)), aes(x=2.2, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=bo |> filter(Season == min(Season)), aes(x=0.8, y=`Pass Eff`, group=Name, label=Name)) +
+  geom_text(data=bo |> filter(Season == max(Season)), aes(x=2.2, y=`Pass Eff`, group=Name, label=Name)) +
+  labs(
+    x = "Season",
+    y = "Passing Efficiency",
+    title="Youngsters' Passing Efficiencies", 
+    subtitle = "How did FBS freshman quarterbacks in 2021 fare in year-to-year improvement compared to the rest?",
+    caption = "Source: NCAA | By: Danny Berg"
+  ) +
+  theme_minimal(  
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 8), 
+    plot.subtitle = element_text(size=10), 
+    panel.grid.minor = element_blank())
+```
+
