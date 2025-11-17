@@ -376,8 +376,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>WORDS WORDS WORDS. MORE WORDS. WORDS.</p>
-<p>words.</p>
+<p>A typical Football Bowl Subdivision team will normally employ a starting quarterback that has been around the block a time or two. Maybe it’s with another program, sitting on the bench for a season or two behind an older player, or has gotten to play for a while at a lower level school. Seldom do teams have a young, fresh-out-of-high-school, unproven young buck taking snaps under center.</p>
+<p>Highly rated four-star and five-star quarterbacks coming out of prep football are the most likely to get this nod, especially in the era of the transfer portal. It is becoming few and far between where 18 and 19-year old young men are standing behind 350 pound offensive linemen with 100,000 screaming fans around them. Getting to play as a freshmen must mean that you’re good right? And that you will improve as time goes on?</p>
+<p>That’s what we are going to try and figure out.</p>
+<p>I went and looked at various different quarterback classes since the College Football Playoff had begun, in 2014-15, as that is when transfer portal activity really started to go on the uptick. I discovered that these freshmen quarterbacks, whether they were true or redshirt, were not getting a majority of the snaps. In some years, it was few and far between. Other years, it was the year of the child.</p>
+<p>Let’s start by looking at the 2021 season, also known as the beginning of the Caleb Williams era. Williams, along with five other lower-tier FBS players, were the only six freshmen to start nine or more games for their respective schools in both their freshmen and sophomore seasons. This includes Williams at Oklahoma and USC, Seth Henigan at Memphis, Hayden Wolff at Old Dominion, Dequan Finn at Toledo, Daniel Richardson at Central Michigan, and Brady Olson at UMass.</p>
+<p>I first set out to see if there was a correlation in improvement when it came to passer rating. You would think that there would be some growth in between Year 1 and Year 2, right? Well…</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -444,7 +448,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>OTHER WORDS. AHHHHHHHHHHH</p>
+<p>I would hate to be Brady Olson, without a doubt. This may be a small sample size, but even Williams saw a minuscule decrease from 2021 to 2022. You could attribute it to the change from the terracotta of Oklahoma to the sandy beaches of Los Angeles, but Lincoln Riley went with him. His efficiency dropped a mere 1.1 points. But everyone else? Various amounts of decline. And then there is Brady Olson.</p>
+<p>The big one to look at here is Williams, who is the primary then-Power Five constant. Henigan is also a good case study for the 2021 class, posting a very flat dip as well, playing at a perennial then-G5 power and annual bowl contender in Memphis. The backbones at the other schools are, well, to be frank, meh.</p>
+<p>What about the money-maker? Touchdowns is a driving factor in what determines, subjectively of course, if a quarterback is any good. Interceptions also help determine if they aren’t any good.</p>
+<p>Let’s look at those same six QBs, as compared to the national averages that season. We can also compare them against themselves.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -523,7 +530,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>W. O. R. D. S.</p>
+<p>So, we determined here that Caleb is good. Brady Olson still isn’t great. He actually wound up with more picks than scores. Ouch.</p>
+<p>Henigan’s touchdown numbers went down a touch, but his interceptions didn’t go anywhere. Richardson threw less picks but had way less scores. Not exactly a shining star. The FBS average stayed about the same both seasons, around eight interceptions to 20 touchdowns.</p>
+<p>Finn and Wolff saw some improvement. In Finn’s case, he was able to get his team into the end zone with the ball more. He also threw more than 70 additional passes his sophomore year, which led to the higher interception total. Wolff was the most drastic, though. His interceptions dropped and his touchdowns rose. Improvement! Old Dominion is on top of the world.</p>
+<p>Okay, so there isn’t always noticeable improvement from Year 1 to Year 2. It is very dependent on the situation and the surrounding tools. NFL Draft QBs have to have done something right though? Right? Right?????<br>
+</p>
+<p>Lets look at the 2024 QB draft class, producing 10 different college products. They showed some growth from when they entered college football didn’t they? Generally speaking, yes.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -555,49 +567,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cl =</span> <span class="fu">gsub</span>(<span class="st">"Gr."</span>, <span class="st">"5"</span>, Cl, <span class="at">fixed=</span><span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cl =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Cl)))</span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bump</span>(<span class="at">data=</span>draft_2024, <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">colour =</span> Name, <span class="at">group =</span> Name)) <span class="sc">+</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>draft_2024, <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">colour =</span> Name, <span class="at">group =</span> Name), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> draft_2024 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Name) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Cl <span class="sc">==</span> <span class="fu">min</span>(Cl)) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>(), <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">label =</span> Name), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> draft_2024 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Name) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Cl <span class="sc">==</span> <span class="fu">max</span>(Cl)) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>(), <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">label =</span> Name), <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">5.5</span>),</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1F77B4"</span>,</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF7F0E"</span>,</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#2CA02C"</span>,</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#D62728"</span>,</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#9467BD"</span>,</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#8C564B"</span>,</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#17BECF"</span>,</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#E377C2"</span>,</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#002d72"</span>,</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#BCBD22"</span>,</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#AEC7E8"</span> </span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year in College Football"</span>,</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Completion Percentage"</span>,</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Career Completion Percentages for Quarterbacks Drafted in 2024"</span>,</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Graph does not include players who competed in less than 75% of their games unless it </span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="st">happened in the middle of career for continuity sake"</span>,</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: NCAA | By: Danny Berg"</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>), </span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), </span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bump</span>(<span class="at">data=</span>draft_2024, <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">colour =</span> Name, <span class="at">group =</span> Name)) <span class="sc">+</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>draft_2024, <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">colour =</span> Name, <span class="at">group =</span> Name), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> draft_2024 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Name) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Cl <span class="sc">==</span> <span class="fu">min</span>(Cl)) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>(), <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">label =</span> Name), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> draft_2024 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Name) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Cl <span class="sc">==</span> <span class="fu">max</span>(Cl)) <span class="sc">|&gt;</span> <span class="fu">ungroup</span>(), <span class="fu">aes</span>(<span class="at">x =</span> Cl, <span class="at">y =</span> PassingEff, <span class="at">label =</span> Name), <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">5.5</span>),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1F77B4"</span>,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF7F0E"</span>,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#2CA02C"</span>,</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#D62728"</span>,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#9467BD"</span>,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#8C564B"</span>,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#17BECF"</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#E377C2"</span>,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#002d72"</span>,</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#BCBD22"</span>,</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#AEC7E8"</span> </span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year in College Football"</span>,</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Completion Percentage"</span>,</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Career Completion Percentages for Quarterbacks Drafted in 2024"</span>,</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Graph does not include players who competed in less than 75% of their games unless it </span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="st">happened in the middle of career for continuity sake"</span>,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: NCAA | By: Danny Berg"</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>), </span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>), </span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -607,6 +620,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>With the exception of Devin Leary, a sixth-round compensation pick to the Baltimore Ravens, all of the signal-callers saw improvement from their first season to when they entered the college game. Exactly what an NFL team wants with a young guy entering the program.</p>
+<p>Improvement year to year, especially for players on the younger side, is extremely unknown. It is hard to predict what a player as important as a quarterback is going to do in his sophomore, junior, and senior seasons based just off of one year. It is more difficult now than ever before with the transfer portal as a major player.</p>
+<p>It is far from linear. Truly, the only thing that ultimately matters from the start to the end of one’s college football career is that you are in a better spot than where you left it. In most cases, that is exactly what happens.</p>
 
 
 
